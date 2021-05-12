@@ -30,5 +30,26 @@ while game_is_on:
     time.sleep(0.1)
     ball.move()
 
+    # Detect collision with top/bottom wall
+    if ball.ycor() > 299:
+        ball.setYDirection(-1) 
+        ball.move()
+    elif ball.ycor() < -299:
+        ball.setYDirection(1) 
+        ball.move()
 
+    # Detect collision with paddles
+    if ball.distance(rPaddle) < 10:
+        ball.setXDirection(-1) 
+        ball.move()
+    elif ball.distance(lPaddle) < 10:
+        ball.setXDirection(1) 
+        ball.move()
+
+    # Detect collision with left/right wall, score 
+    if ball.xcor() > 388:
+        pass
+        #scoreboard.gameOver()
+    elif ball.xcor() < -388:
+        pass
 screen.exitonclick()
