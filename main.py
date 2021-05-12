@@ -6,8 +6,6 @@ from paddle import Paddle
 
 screen_width = 800
 screen_height = 600
-WIDTH = 20
-HEIGHT = 100
 
 screen = Screen()
 screen.setup(width=screen_width, height=screen_height)
