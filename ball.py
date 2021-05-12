@@ -2,6 +2,7 @@ from turtle import Turtle
 
 WIDTH = 1
 HEIGHT = 1
+BASE_MOVE_SPEED = 0.1
 
 class Ball(Turtle):
     def __init__(self):
@@ -10,17 +11,27 @@ class Ball(Turtle):
         self.penup()
         self.color("white")
         self.coordinates = self.position()
-        self.x_direction = 1
-        self.y_direction = 1
-    
-    def setXDirection(self,h):
-        self.x_direction = h 
-
-    def setYDirection(self,v):
-        self.y_direction = v 
+        self.x_move = 10
+        self.y_move = 10
+        self.move_speed = BASE_MOVE_SPEED
 
     def move(self, h=1, v=1):
         past_x, past_y = self.position()
-        new_x = past_x + (10 * self.x_direction)
-        new_y = past_y + (10 * self.y_direction)
+        new_x = past_x + self.x_move
+        new_y = past_y + self.y_move
         self.goto((new_x,new_y))
+
+    def bounce_y(self):
+        self.y_move *= -1
+        self.move_speed *= 0.9
+
+    def bounce_x(self):
+        self.x_move *= -1
+        self.move_speed *= 0.9
+
+    def reset_position(self):
+        self.hideturtle()
+        self.goto((0,0))
+        self.showturtle()
+        self.move_speed = BASE_MOVE_SPEED
+        self.bounce_x()
