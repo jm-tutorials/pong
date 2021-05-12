@@ -9,7 +9,8 @@ class Ball(Turtle):
         self.shape("circle")
         self.penup()
         self.color("white")
-        self.setheading(45)
     
     def move(self):
-        
+        new_position = map(lambda x: x+10, self.position())
+        self.goto(new_position)
+
